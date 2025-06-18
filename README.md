@@ -1,54 +1,68 @@
-# React + TypeScript + Vite
+# SHM QR Payment System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modular, modern web app for QR-based payments on the Shardeum (SHM) blockchain. Built with React, TypeScript, Vite, and Chakra UI.
 
-Currently, two official plugins are available:
+## Features
+- **Merchant Dashboard**: Generate QR codes for payment requests, view balance, and transaction history.
+- **Customer View**: Scan QR codes and send payments easily.
+- **Wallet Integration**: Connect wallet, view address and SHM balance.
+- **Transaction Table**: See transaction history with status.
+- **Modular UI**: Reusable components for wallet connection, amount input, QR code display, and transaction table.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/) for fast development
+- [Chakra UI](https://chakra-ui.com/) for UI components
+- [ethers.js](https://docs.ethers.org/) for blockchain interactions
+- [qrcode.react](https://github.com/zpao/qrcode.react) for QR code generation
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Project Structure
+```
+qr-payment-app/
+  src/
+    components/
+      common/
+        WalletConnector.tsx
+        AmountInput.tsx
+        QRCodeDisplay.tsx
+        TransactionTable.tsx
+      MerchantView.tsx
+      CustomerView.tsx
+    utils/
+      web3.ts
+    App.tsx
+    ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Install dependencies:**
+   ```bash
+   cd qr-payment-app
+   npm install
+   ```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+3. **Open your browser:**
+   Visit [http://localhost:5173](http://localhost:5173)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Usage
+- **Merchant:**
+  1. Connect your wallet.
+  2. Enter an amount and click "Generate QR" to create a payment QR code.
+  3. Share the QR code with customers.
+  4. View transaction history below.
+- **Customer:**
+  1. Connect your wallet.
+  2. Scan the merchant's QR code.
+  3. Confirm and send payment.
+
+## Customization
+- UI components are modular and reusable (see `src/components/common/`).
+- Blockchain logic is in `src/utils/web3.ts`.
+- Easily extend for new features or different blockchains.
+
+## License
+MIT
